@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Surf android school</string>
+    <string name="logo">Logo</string>
+    <string name="login">Войти</string>
 </resources>

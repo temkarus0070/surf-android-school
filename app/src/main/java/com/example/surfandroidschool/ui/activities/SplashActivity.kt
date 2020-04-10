@@ -9,6 +9,7 @@ import com.example.surfandroidschool.mvp.presenters.SplashPresenter
 import com.example.surfandroidschool.mvp.views.SplashView
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
+import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 
 public class SplashActivity:MvpAppCompatActivity(),SplashView {
     @InjectPresenter

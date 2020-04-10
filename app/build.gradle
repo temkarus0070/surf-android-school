@@ -45,4 +45,5 @@ dependencies {
     implementation "com.github.moxy-community:moxy:2.1.2"
     kapt 'com.github.moxy-community:moxy-compiler:2.1.2'
     implementation "com.github.moxy-community:moxy-androidx:2.1.2"
+    implementation 'com.github.HITGIF:TextFieldBoxes:1.4.5'
 }

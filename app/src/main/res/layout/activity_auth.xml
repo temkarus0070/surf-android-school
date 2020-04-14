@@ -13,11 +13,15 @@
         android:orientation="vertical">
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+
+
             android:id="@+id/textfieldLogin"
             android:background="@color/loginsBackground"
             android:layout_width="328dp"
             android:layout_height="56dp"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             app:alwaysShowHint="true"
             >
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
@@ -28,12 +32,27 @@
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="4.09dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="19dp"
+            android:id="@+id/loginError"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error">
+        </TextView>
+
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            app:useDenseSpacing="true"
             android:background="@color/loginsBackground"
             android:id="@+id/textfieldPassword"
             android:layout_width="328dp"
             android:layout_height="56dp"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             app:alwaysShowHint="true"
             app:endIcon="@drawable/picture_password"
             >
@@ -44,8 +63,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="@color/per70white"
+                android:inputType="number"
+                android:maxLength="@integer/passwordLength"
                  />
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="4.09dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="19dp"
+            android:id="@+id/passwordError"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error">
+        </TextView>
 
 
 
@@ -57,6 +91,8 @@
 
 
     <Button
+        android:onClick="authClick"
+        android:id="@+id/authBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"

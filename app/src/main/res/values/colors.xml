@@ -6,4 +6,8 @@
     <color name="splash">#23213F</color>
     <color name="greenButton">#1EF0D7</color>
     <color name="loginsBackground">#FFFFFF</color>
+    <color name="errorColor">#FF575D</color>
+    <color name="progressBarColor">#1e2031</color>
+    <color name="bottomBorderColor">#1EF0D7</color>
+    <color name="bottomInputBorderColor">#ffffff</color>
 </resources>

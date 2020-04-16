@@ -13,10 +13,9 @@
         android:orientation="vertical">
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-
-
+            android:alpha="0.05"
             android:id="@+id/textfieldLogin"
-            android:background="@color/loginsBackground"
+            android:background="@color/bottomInputBorderColor"
             android:layout_width="328dp"
             android:layout_height="56dp"
             android:layout_marginLeft="16dp"
@@ -25,6 +24,7 @@
             app:alwaysShowHint="true"
             >
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:textColor="@color/loginsBackground"
                 android:hint="@string/login"
                 android:id="@+id/editLogin"
                 android:layout_width="fill_parent"
@@ -38,15 +38,16 @@
             android:layout_marginLeft="28dp"
             android:layout_marginRight="19dp"
             android:id="@+id/loginError"
-
+            android:textColor="@color/errorColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="error">
         </TextView>
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:alpha="0.05"
             app:useDenseSpacing="true"
-            android:background="@color/loginsBackground"
+            android:background="@drawable/border"
             android:id="@+id/textfieldPassword"
             android:layout_width="328dp"
             android:layout_height="56dp"
@@ -75,7 +76,7 @@
             android:layout_marginLeft="28dp"
             android:layout_marginRight="19dp"
             android:id="@+id/passwordError"
-
+            android:textColor="@color/errorColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="error">
@@ -88,11 +89,9 @@
 
     </LinearLayout>
 
-
-
-    <Button
-        android:onClick="authClick"
-        android:id="@+id/authBtn"
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -100,9 +99,36 @@
         android:background="@color/greenButton"
         android:width="328dp"
         android:height="48dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter"
+        android:layout_marginHorizontal="16dp"
+        >
 
-        />
+        <ProgressBar
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/progress"
+            android:id="@+id/progress_circular"
+            android:indeterminateOnly="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="148dp"
+            android:layout_marginLeft="148dp"
+            />
+
+        <Button
+            android:onClick="authClick"
+            android:id="@+id/authBtn"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/enter"
+            >
+        </Button>
+
+    </FrameLayout>
+
+
+
+
+
+
 </RelativeLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/textfieldLogin"
+            style="@style/inputStyle"
+            app:labelText="@string/login">
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/editLogin"
+                style="@style/extendEditStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+        <TextView
+            android:id="@+id/loginError"
+            style="@style/inputErrorStyle"></TextView>
+
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/textfieldPassword"
+            style="@style/inputStyle"
+            app:endIcon="@drawable/picture_password"
+            app:labelText="@string/password"
+            app:useDenseSpacing="true">
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/editPassword"
+                style="@style/extendEditStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:inputType="number"
+                android:maxLength="@integer/passwordLength" />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+        <TextView
+            android:id="@+id/passwordError"
+            style="@style/inputErrorStyle"></TextView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/lowFrame"
+        style="@style/layoutStyleForButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            style="@style/progressAuthStyle" />
+
+        <Button
+            android:id="@+id/authBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:onClick="authClick"
+            android:text="@string/enter"></Button>
+
+    </FrameLayout>
+
+
+</RelativeLayout>

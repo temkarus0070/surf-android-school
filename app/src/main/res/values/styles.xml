@@ -8,4 +8,53 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="inputStyle">
+        <item name="android:layout_width">328dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="primaryColor">#1EF0D7</item>
+        <item name="secondaryColor">#8AFFFFFF</item>
+    </style>
+
+    <style name="inputErrorStyle">
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginTop">4.09dp</item>
+        <item name="android:layout_marginLeft">28dp</item>
+        <item name="android:layout_marginRight">19dp</item>
+        <item name="android:textColor">@color/errorColor</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/error</item>
+    </style>
+
+    <style name="progressAuthStyle">
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:indeterminateDrawable">@drawable/progress</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginRight">148dp</item>
+        <item name="android:layout_marginLeft">148dp</item>
+    </style>
+
+    <style name="layoutStyleForButton">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:background">@color/greenButton</item>
+        <item name="android:width">328dp</item>
+        <item name="android:height">48dp</item>
+    </style>
+
+
+    <style name="extendEditStyle">
+        <item name="android:alpha">0.05</item>
+        <item name="android:background">@color/loginsBackground</item>
+        <item name="android:textColor">@color/loginsBackground</item>
+
+    </style>
 </resources>

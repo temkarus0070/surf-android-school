@@ -24,6 +24,7 @@ public class SplashActivity:MvpAppCompatActivity(),SplashView {
     override fun openNext() {
 
         startActivity(Intent(this,AuthActivity::class.java))
+        finish()
     }
 
 

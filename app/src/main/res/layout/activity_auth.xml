@@ -13,19 +13,21 @@
         android:orientation="vertical">
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:alpha="0.05"
             android:id="@+id/textfieldLogin"
-            android:background="@color/bottomInputBorderColor"
             android:layout_width="328dp"
             android:layout_height="56dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            app:alwaysShowHint="true"
+            app:labelText="@string/login"
+            app:primaryColor="#1EF0D7"
+            app:secondaryColor="#8AFFFFFF"
             >
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:alpha="0.05"
+                android:background="@color/loginsBackground"
                 android:textColor="@color/loginsBackground"
-                android:hint="@string/login"
+
                 android:id="@+id/editLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"/>
@@ -45,27 +47,29 @@
         </TextView>
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:alpha="0.05"
             app:useDenseSpacing="true"
-            android:background="@drawable/border"
             android:id="@+id/textfieldPassword"
             android:layout_width="328dp"
             android:layout_height="56dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            app:alwaysShowHint="true"
             app:endIcon="@drawable/picture_password"
+            app:labelText="@string/password"
+            app:primaryColor="#1EF0D7"
+            app:secondaryColor="#8AFFFFFF"
             >
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:hint="@string/password"
+                android:alpha="0.05"
+                android:background="@color/loginsBackground"
+                android:textColor="@color/loginsBackground"
                 android:id="@+id/editPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/per70white"
                 android:inputType="number"
                 android:maxLength="@integer/passwordLength"
+
                  />
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
@@ -90,6 +94,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/lowFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

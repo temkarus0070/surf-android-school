@@ -1,6 +1,8 @@
 package com.example.surfandroidschool.ui.activities
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Bundle
@@ -15,6 +17,7 @@ import com.example.surfandroidschool.R
 import com.example.surfandroidschool.auth.AuthInfo
 import com.example.surfandroidschool.mvp.presenters.AuthPresenter
 import com.example.surfandroidschool.mvp.views.AuthView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_auth.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
@@ -120,19 +123,32 @@ class AuthActivity:MvpAppCompatActivity(),AuthView {
         if(!empty) {
             authButton.text=""
             progressBar.visibility = View.VISIBLE
-            presenter.auth(loginInput.text.toString(), passwordInput.text.toString())
+            presenter.auth(loginInput.text.toString(), passwordInput.text.toString(),getSharedPreferences("auth",Context.MODE_PRIVATE))
         }
     }
 
     override fun endAuth(authInfo:AuthInfo) {
         progressBar.visibility = View.INVISIBLE
         authButton.text =  resources.getString(R.string.enter)
-        println(authInfo?.userInfo?.userDescription)
-    }
-
-    fun progressButton(){
+        println(authInfo?.userInfo.userDescription)
 
     }
+
+    override fun nextScreen() {
+        startActivity(Intent(this,MainActivity::class.java))
+        finish()
+    }
+
+    override fun viewError(){
+        Snackbar.make(findViewById(R.id.lowFrame),"Вы ввели не верные данные.\n" +
+                "Попробуйте еще раз ",3000).setBackgroundTint( resources.getColor(R.color.
+        snackBarBackColor)).show()
+    }
+
+
+
+
+
 
 
 }

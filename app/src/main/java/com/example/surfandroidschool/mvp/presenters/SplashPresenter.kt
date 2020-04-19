@@ -13,7 +13,7 @@ class SplashPresenter : MvpPresenter<SplashView>() {
     }
 
     fun setTimer() {
-       var timer: Timer = Timer()
+        var timer: Timer = Timer()
         var task: TimerTask = MyTimerTask(this)
         timer.schedule(task, 300)
     }

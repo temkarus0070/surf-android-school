@@ -7,13 +7,14 @@ import com.example.surfandroidschool.ui.activities.SplashActivity
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 
-class MainActivity :MvpAppCompatActivity(R.layout.activity_main),MainView {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     @InjectPresenter
-    lateinit var presenter:MainPresenter
+    lateinit var presenter: MainPresenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        System.out.println("я создалась")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

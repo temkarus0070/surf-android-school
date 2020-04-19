@@ -14,13 +14,13 @@ import java.util.*
 
 interface AuthApi {
     @POST("auth/login")
-    fun auth(@Body user:User): Observable<AuthInfo>
+    fun auth(@Body user: User): Observable<AuthInfo>
 
-    companion object Factory{
-        private const val BASE_URL:String = "https://demo2407529.mockable.io"
+    companion object Factory {
+        private const val BASE_URL: String = "https://demo2407529.mockable.io"
 
-        fun create(authErrorСallBack:()->Unit):AuthApi{
-            val gson= Gson()
+        fun create(authErrorСallBack: () -> Unit): AuthApi {
+            val gson = Gson()
 
             val okHttp = OkHttpClient.Builder()
                 .addInterceptor(AuthInterceptor(authErrorСallBack))

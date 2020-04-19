@@ -13,5 +13,4 @@ class MainPresenter : MvpPresenter<MainView>() {
     }
 
 
-
 }

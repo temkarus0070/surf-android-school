@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash">
+    android:background="@color/splash"
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -14,126 +15,62 @@
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
             android:id="@+id/textfieldLogin"
-            android:layout_width="328dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            app:labelText="@string/login"
-            app:primaryColor="#1EF0D7"
-            app:secondaryColor="#8AFFFFFF"
-            >
-            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:alpha="0.05"
-                android:background="@color/loginsBackground"
-                android:textColor="@color/loginsBackground"
+            style="@style/inputStyle"
+            app:labelText="@string/login">
 
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/editLogin"
+                style="@style/extendEditStyle"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"/>
+                android:layout_height="fill_parent" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
         <TextView
-            android:visibility="gone"
-            android:layout_marginTop="4.09dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="19dp"
             android:id="@+id/loginError"
-            android:textColor="@color/errorColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="error">
-        </TextView>
+            style="@style/inputErrorStyle"></TextView>
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            app:useDenseSpacing="true"
             android:id="@+id/textfieldPassword"
-            android:layout_width="328dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
+            style="@style/inputStyle"
             app:endIcon="@drawable/picture_password"
             app:labelText="@string/password"
-            app:primaryColor="#1EF0D7"
-            app:secondaryColor="#8AFFFFFF"
-            >
+            app:useDenseSpacing="true">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:alpha="0.05"
-                android:background="@color/loginsBackground"
-                android:textColor="@color/loginsBackground"
                 android:id="@+id/editPassword"
+                style="@style/extendEditStyle"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:inputType="number"
-                android:maxLength="@integer/passwordLength"
+                android:maxLength="@integer/passwordLength" />
 
-                 />
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-
         <TextView
-            android:visibility="gone"
-            android:layout_marginTop="4.09dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="19dp"
             android:id="@+id/passwordError"
-            android:textColor="@color/errorColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="error">
-        </TextView>
-
-
-
-
-
-
+            style="@style/inputErrorStyle"></TextView>
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/lowFrame"
+        style="@style/layoutStyleForButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="24dp"
-        android:background="@color/greenButton"
-        android:width="328dp"
-        android:height="48dp"
-        android:layout_marginHorizontal="16dp"
-        >
+        android:layout_height="wrap_content">
 
         <ProgressBar
-            android:visibility="invisible"
-            android:layout_gravity="center"
-            android:indeterminateDrawable="@drawable/progress"
             android:id="@+id/progress_circular"
-            android:indeterminateOnly="true"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="148dp"
-            android:layout_marginLeft="148dp"
-            />
+            style="@style/progressAuthStyle" />
 
         <Button
-            android:onClick="authClick"
             android:id="@+id/authBtn"
-            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/enter"
-            >
-        </Button>
+            android:background="@android:color/transparent"
+            android:onClick="authClick"
+            android:text="@string/enter"></Button>
 
     </FrameLayout>
-
-
-
-
 
 
 </RelativeLayout>

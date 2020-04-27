@@ -12,4 +12,10 @@
     <color name="bottomInputBorderColor">#ffffff</color>
     <color name="inputTextColor">#8AFFFFFF</color>
     <color name="snackBarBackColor">#FF575D</color>
+    <color name="mainBackgroundColor">#312F51</color>
+    <color name="BottomNavBackColor">#12102B</color>
+    <color name="SelectTabBackColor"> #1EF0D7</color>
+    <color name="NotSelectTabBackColor">#ffffff</color>
+    <color name="memeBackColor">#312F51</color>
+    <color name="memeLayoutBackColor">#23213F</color>
 </resources>

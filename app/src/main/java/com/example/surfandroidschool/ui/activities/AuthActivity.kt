@@ -49,6 +49,7 @@ class AuthActivity : MvpAppCompatActivity(), AuthView {
     private lateinit var buttonFrameLayout: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        checkAuth()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         textFieldLogin = findViewById(R.id.textfieldLogin)
@@ -169,6 +170,11 @@ class AuthActivity : MvpAppCompatActivity(), AuthView {
     override fun endAuth(authInfo: AuthInfo) {
         progressBar.visibility = View.INVISIBLE
         authButton.text = resources.getString(R.string.enter)
+    }
+
+    override fun checkAuth() {
+       if( getSharedPreferences("auth",Context.MODE_PRIVATE).contains("accessToken"))
+           nextScreen()
     }
 
     override fun nextScreen() {

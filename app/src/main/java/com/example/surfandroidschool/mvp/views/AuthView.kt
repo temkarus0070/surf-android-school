@@ -21,4 +21,7 @@ interface AuthView : MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun endRippleButton()
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun checkAuth()
 }

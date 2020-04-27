@@ -1,0 +1,21 @@
+<?xml version ="1.0" encoding ="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/showMemes"
+        android:title="@string/showMemes" android:icon="@drawable/memes_menu_item_icon">
+    </item>
+    <item
+        android:id="@+id/addMemes"
+        android:title="@string/addMemes"
+        android:icon="@drawable/circle_add_icon"
+        >
+
+    </item>
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_usericon"
+        >
+
+    </item>
+</menu>

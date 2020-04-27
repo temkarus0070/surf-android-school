@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.surfandroidschool.memes.MemeData
 import com.example.surfandroidschool.memes.memesAdapter
 import com.example.surfandroidschool.mvp.presenters.MemesPresenter
@@ -15,6 +16,7 @@ import moxy.presenter.InjectPresenter
 public class MemesFragment:MvpAppCompatFragment(),MemesView{
     @InjectPresenter
     lateinit var memesPresenter:MemesPresenter
+    lateinit var refresher:SwipeRefreshLayout
     lateinit var adapter:memesAdapter
     lateinit var listMemes:RecyclerView
     override fun onCreateView(
@@ -34,16 +36,29 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
     }
 
 
-    private fun setToolbar(){
+    override fun setToolbar() {
         val toolbar= activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.topToolbar)
+        if(toolbar?.menu?.size()!=0)
+            toolbar?.menu?.clear()
         toolbar?.title = "Популярные мемы"
-       toolbar?.inflateMenu(R.menu.show_memes_menu)
+        toolbar?.inflateMenu(R.menu.show_memes_menu)
     }
 
     override fun initialize(){
+        refresher = activity?.findViewById<SwipeRefreshLayout>(R.id.refresherMemes)!!
+        refresher?.setOnRefreshListener {
+            run {
+                    memesPresenter.loadMemes()
+
+            }
+        }
        listMemes = view?.findViewById(R.id.listMemes)!!
         listMemes.adapter=adapter
 
+    }
+
+   override fun hideRefreshBar(){
+        refresher?.isRefreshing = false
     }
 
 

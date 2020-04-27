@@ -60,6 +60,7 @@ class AuthActivity : MvpAppCompatActivity(), AuthView {
     }
 
 
+
     private fun setInputs() {
         loginInput = findViewById(R.id.editLogin)
         passwordInput = findViewById(R.id.editPassword)

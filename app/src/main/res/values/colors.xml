@@ -18,4 +18,5 @@
     <color name="NotSelectTabBackColor">#ffffff</color>
     <color name="memeBackColor">#312F51</color>
     <color name="memeLayoutBackColor">#23213F</color>
+    <color name="disabledSaveColor">#4D1EF0D7</color>
 </resources>

@@ -7,7 +7,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MemesFragment">
 
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresherMemes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <androidx.recyclerview.widget.RecyclerView
 
         android:background="@color/memeLayoutBackColor"
@@ -18,4 +21,5 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager">
 
     </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

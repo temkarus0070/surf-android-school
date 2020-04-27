@@ -20,14 +20,14 @@ class MemesPresenter:MvpPresenter<MemesView>() {
 
     }
 
-    private fun loadMemes(){
+    public fun loadMemes(){
         val api=MemeApiProvider.getMemeApi()
         val memes = api.getMemes()
         memes.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(             {
                 viewState.showMemes(it)
-                println("я зашел")
+                viewState?.hideRefreshBar()
             } ,
                 {
                     it.printStackTrace()

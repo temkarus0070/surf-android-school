@@ -13,14 +13,15 @@
     android:id="@+id/topToolbar"
     android:layout_width="match_parent"
     android:layout_height="56dp">
-</androidx.appcompat.widget.Toolbar>>
+</androidx.appcompat.widget.Toolbar>
     <FrameLayout
+
         android:layout_marginTop="72dp"
 
         android:background="@color/memeLayoutBackColor"
         android:id="@+id/appFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     </FrameLayout>
     <RelativeLayout

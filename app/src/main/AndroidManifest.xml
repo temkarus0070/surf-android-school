@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:allowClearUserData="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,7 +28,7 @@
         <activity
             android:name=".ui.activities.AuthActivity"
             android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"   android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

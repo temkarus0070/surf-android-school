@@ -9,4 +9,6 @@
     <string name="addMemes">add memes</string>
     <string name="profile">profile</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="createMemCaption">Заголовок</string>
+    <string name="createMemText">Текст</string>
 </resources>

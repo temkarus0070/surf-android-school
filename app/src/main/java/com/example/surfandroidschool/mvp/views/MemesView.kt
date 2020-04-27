@@ -11,4 +11,6 @@ interface MemesView:MvpView {
     fun showMemes(memesList:List<MemeData>)
     fun initialize()
     fun showError()
+    fun hideRefreshBar()
+    fun setToolbar()
 }

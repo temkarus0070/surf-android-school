@@ -9,6 +9,7 @@ import androidx.core.view.forEach
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.surfandroidschool.ui.activities.MemeCreateFragment
+import com.example.surfandroidschool.ui.activities.ProfileFragment
 import com.example.surfandroidschool.ui.activities.SplashActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import moxy.MvpAppCompatActivity
@@ -51,7 +52,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                     true
                 }
                 R.id.profile->{
-
+                    ft = fragmentManager.beginTransaction()
+                    ft.replace(R.id.appFragment,ProfileFragment(),"profileFragment")
+                    ft.commit()
                     true
                 }
                 else->{

@@ -4,12 +4,17 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.RelativeLayout
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.surfandroidschool.memes.MemeData
 import com.example.surfandroidschool.memes.memesAdapter
 import com.example.surfandroidschool.mvp.presenters.MemesPresenter
 import com.example.surfandroidschool.mvp.views.MemesView
+import com.example.surfandroidschool.ui.activities.MemeViewFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
@@ -38,6 +43,13 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
 
     override fun setToolbar() {
         val toolbar= activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.topToolbar)
+        val memeView =activity?.findViewById<RelativeLayout>(R.id.memeViewMenu)
+        val createView = activity?.findViewById<RelativeLayout>(R.id.memeCreateMenu)
+
+        if(view!=null)
+            toolbar?.removeView(view)
+        if(createView!=null)
+            toolbar?.removeView(createView)
         if(toolbar?.menu?.size()!=0)
             toolbar?.menu?.clear()
         toolbar?.title = "Популярные мемы"
@@ -54,7 +66,8 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
         }
        listMemes = view?.findViewById(R.id.listMemes)!!
         listMemes.adapter=adapter
-
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)?.visibility=View.VISIBLE
+        setToolbar()
     }
 
    override fun hideRefreshBar(){
@@ -66,16 +79,26 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
         super.onAttach(context)
         if(context is Activity){
             var mActivity =context as Activity
-            setToolbar()
-            adapter = memesAdapter(mActivity)
+
+            adapter = memesAdapter(mActivity,::itemClicker)
         }
+
+    }
+
+    fun itemClicker(data:MemeData, position:Int):Unit{
+        val ft = fragmentManager?.beginTransaction()
+        val fragment=MemeViewFragment()
+        val bundle=Bundle()
+        bundle.putSerializable("meme",data)
+        fragment.arguments=bundle
+        ft?.replace(R.id.appFragment,fragment,"memeView")
+        ft?.commit()
 
     }
 
     override fun showError() {
         println("ошибочка вышла")
     }
-
 
 
 

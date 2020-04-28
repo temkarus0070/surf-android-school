@@ -5,6 +5,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_alignParentTop="true"
         app:hintEnabled="false"
@@ -34,7 +40,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_alignBottom="@id/inputMemeCaptionLayout"
         android:id="@+id/inputMemeTextLayout"
         android:layout_width="wrap_content"
         app:hintEnabled="false"
@@ -53,6 +58,8 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/memeImage"
         android:layout_width="wrap_content"
@@ -61,8 +68,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="19dp"
         android:background="@drawable/ic_set_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="38dp"
+        android:layout_height="38dp"/>
 
 
 

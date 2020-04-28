@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.surfandroidschool.MemesFragment
 import com.example.surfandroidschool.R
 
-class memesAdapter(activity: Activity):RecyclerView.Adapter<memesAdapter.MemeHolder>() {
+class memesAdapter(activity: Activity, val clickListener:(MemeData,Int)->Unit)
+    :RecyclerView.Adapter<memesAdapter.MemeHolder>() {
     private var useActivity = activity
     private var  data:List<MemeData> = listOf()
 
@@ -44,6 +45,10 @@ class memesAdapter(activity: Activity):RecyclerView.Adapter<memesAdapter.MemeHol
 
         if(data.get(position).isFavorite){
             holder.likeButton.setBackgroundResource(R.drawable.ic_like)
+        }
+        val item = data.get(position)
+        holder?.itemView.setOnClickListener{
+            clickListener(item,position)
         }
     }
 

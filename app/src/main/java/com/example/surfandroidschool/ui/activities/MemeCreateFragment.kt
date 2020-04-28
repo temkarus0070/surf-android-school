@@ -9,6 +9,7 @@ import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.view.*
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.Toolbar
@@ -18,10 +19,12 @@ import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.core.view.marginRight
 import androidx.core.view.setPadding
+import com.example.surfandroidschool.MemesFragment
 import com.example.surfandroidschool.R
 import com.example.surfandroidschool.mvp.views.CreateMemeView
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatFragment
@@ -79,6 +82,7 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
             }
 
         }
+
         )
 
         editText.addTextChangedListener(object:TextWatcher{
@@ -98,24 +102,33 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
             }
 
         })
+
+
+        activity?.findViewById<Button>(R.id.exitCreateBtn)?.setOnClickListener {
+            kotlin.run{
+                var transaction =fragmentManager?.beginTransaction()
+                transaction?.replace(R.id.appFragment, MemesFragment())
+                transaction?.commit()
+            }
+        }
+        activity?.findViewById<Button>(R.id.addMeme)?.setOnClickListener {
+            {
+            }
+        }
+
     }
 
     fun checkInput(){
-        val item=topToolbar?.menu.getItem(1)
+        var item=topToolbar?.getChildAt(1).findViewById<Button>(R.id.addMeme)
+        item = item as Button
         if(captionLength !=0 && textLength!=0){
-            topToolbar?.menu.getItem(1).setEnabled(true)
-            val str:SpannableString = SpannableString("СОЗДАТЬ")
-
-            str.setSpan(ForegroundColorSpan(resources.getColor(R.color.greenButton)),0,str.length,0)
-            item.setTitle(str)
             item.setEnabled(true)
+            item.setTextColor(resources.getColor(R.color.greenButton))
         }
         else
         {
-            val str:SpannableString = SpannableString("СОЗДАТЬ")
-            str.setSpan(ForegroundColorSpan(resources.getColor(R.color.disabledSaveColor)),0,str.length,0)
-            item.setTitle(str)
             item.setEnabled(false)
+            item.setTextColor(resources.getColor(R.color.disabledSaveColor))
 
         }
     }
@@ -123,41 +136,13 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
 
 
     private fun setMenu(){
+        val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)
+        bottomNav?.visibility = View.GONE
         topToolbar = activity?.findViewById<Toolbar>(R.id.topToolbar)!!
-        if(topToolbar?.menu?.size()!=0)
-            topToolbar?.menu?.clear()
-        topToolbar?.setContentInsetsAbsolute(200,200)
-        topToolbar?.inflateMenu(R.menu.meme_create_menu)
+        topToolbar.menu.clear()
+        layoutInflater.inflate(R.layout.menu_layout_meme_create,topToolbar)
         topToolbar?.title = null
-       // var params= Toolbar.LayoutParams(14,14)
-        var params= androidx.appcompat.widget.ActionMenuView.LayoutParams(14,14)
-        params.rightMargin=16
-        var item =topToolbar?.menu?.getItem(0)
-        var view =item?.actionView
-   //     view?.layoutParams = params
-      /*  var botNavMenuView:BottomNavigationItemView= topToolbar?.getChildAt(0) as BottomNavigationItemView
-        for(item in botNavMenuView.children)
-        {
-            item.layoutParams=params
-        }*/
-   //     botNavMenuView?.layoutParams=params
 
-     //   params =Toolbar.LayoutParams(69,48)
-    //    params.rightMargin=16
-    //    var vieha=topToolbar?.menu?.getItem(0) as BottomNavigationMenuView
-     //   vieha.layoutParams=params
-
-            //   botNavMenuView = topToolbar?.getChildAt(1)
-        //botNavMenuView?.layoutParams=params
-        topToolbar?.menu?.forEach {
-
-            item: MenuItem ->
-           run {
-           //    item.actionView = view
-
-
-            }
-        }
 
     }
 

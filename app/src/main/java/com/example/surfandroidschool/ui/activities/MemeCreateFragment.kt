@@ -1,7 +1,9 @@
 package com.example.surfandroidschool.ui.activities
 
 import android.app.Activity
+import android.app.Fragment
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -21,6 +23,7 @@ import androidx.core.view.forEach
 import androidx.core.view.marginRight
 import androidx.core.view.setPadding
 import com.bumptech.glide.Glide
+import com.example.surfandroidschool.MainActivity
 import com.example.surfandroidschool.MemesFragment
 import com.example.surfandroidschool.R
 import com.example.surfandroidschool.memes.MemeData
@@ -162,6 +165,10 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
         topToolbar?.title = null
         topToolbar?.setBackgroundColor(resources.getColor(R.color.memeBackColor))
 
+
+    }
+
+   override fun goOut(){
 
     }
 

@@ -1,9 +1,12 @@
 package com.example.surfandroidschool.mvp.presenters
 
 import android.content.Context
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.surfandroidschool.MainActivity
 import com.example.surfandroidschool.memes.MemeData
 import com.example.surfandroidschool.mvp.views.CreateMemeView
 import com.example.surfandroidschool.repository.MemesRepository
@@ -18,7 +21,7 @@ import moxy.InjectViewState
 import moxy.MvpPresenter
 @InjectViewState
 class CreatePresenter:MvpPresenter<CreateMemeView>() {
-    private var lastId = 0
+    private var lastId:Long = 0
 
     lateinit var memeViewModel: MemesViewModel
 
@@ -30,7 +33,7 @@ class CreatePresenter:MvpPresenter<CreateMemeView>() {
                 memes->
             memes?.let {
                 if(it.isNotEmpty()) {
-                    lastId = it.last().id.toInt()
+                    lastId = it.last().id.toLong()
                     lastId = lastId + 1
                 }
             }
@@ -38,6 +41,7 @@ class CreatePresenter:MvpPresenter<CreateMemeView>() {
 
         }).run {
             memeViewModel.insert(meme)
+            viewState.goOut()
         }
 
 

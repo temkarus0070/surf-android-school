@@ -42,10 +42,12 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
 
 
     override fun setToolbar() {
+
         val toolbar= activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.topToolbar)
         val memeView =activity?.findViewById<RelativeLayout>(R.id.memeViewMenu)
         val createView = activity?.findViewById<RelativeLayout>(R.id.memeCreateMenu)
 
+        toolbar?.setBackgroundColor(resources.getColor(R.color.memeBackColor))
         if(view!=null)
             toolbar?.removeView(view)
         if(createView!=null)

@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.core.graphics.alpha
@@ -19,8 +20,11 @@ import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.core.view.marginRight
 import androidx.core.view.setPadding
+import com.bumptech.glide.Glide
 import com.example.surfandroidschool.MemesFragment
 import com.example.surfandroidschool.R
+import com.example.surfandroidschool.memes.MemeData
+import com.example.surfandroidschool.mvp.presenters.CreatePresenter
 import com.example.surfandroidschool.mvp.views.CreateMemeView
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -28,9 +32,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatFragment
+import moxy.presenter.InjectPresenter
+import java.util.*
 
 class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
-    lateinit var fragmentView:View
+    @InjectPresenter
+    lateinit var presenter:CreatePresenter
+    private val url ="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfPiMMl5kXYin0ZwAQ8BSzXEFCdLaWTWDiu-KQSCNeYbWKS1rM&usqp=CAU"
+    public lateinit var fragmentView:View
     lateinit var editCaption:EditText
     lateinit var editText:EditText
     lateinit var topToolbar:Toolbar
@@ -46,20 +55,22 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
         setMenu()
         createListeners()
         checkInput()
+        var imageView = fragmentView?.findViewById<ImageView>(R.id.memeImage)
+        Glide.with(fragmentView)
+            .load(url)
+            .into(imageView)
         return fragmentView
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
 
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
 
     }
+
 
     fun createListeners(){
         editCaption= fragmentView.findViewById(R.id.captionMeme)!!
@@ -106,13 +117,20 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
 
         activity?.findViewById<Button>(R.id.exitCreateBtn)?.setOnClickListener {
             kotlin.run{
+                activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)?.
+                    selectedItemId= R.id.showMemes
                 var transaction =fragmentManager?.beginTransaction()
                 transaction?.replace(R.id.appFragment, MemesFragment())
                 transaction?.commit()
             }
         }
         activity?.findViewById<Button>(R.id.addMeme)?.setOnClickListener {
-            {
+            kotlin.run{
+                val caption = editCaption.text.toString()
+                val text = editText.text.toString()
+                var meme = MemeData(caption,url,false,text, Date().time.toString(),"1")
+
+                presenter.createMem(meme,context,this)
             }
         }
 
@@ -142,6 +160,7 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
         topToolbar.menu.clear()
         layoutInflater.inflate(R.layout.menu_layout_meme_create,topToolbar)
         topToolbar?.title = null
+        topToolbar?.setBackgroundColor(resources.getColor(R.color.memeBackColor))
 
 
     }

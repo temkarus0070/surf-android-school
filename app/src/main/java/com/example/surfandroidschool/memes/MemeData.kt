@@ -7,4 +7,4 @@ import java.io.Serializable
 
 @Entity(tableName = "memes_table")
 data class MemeData(var title:String, var photoUrl:String, var isFavorite:Boolean,
-                    var description:String, var createdDate:String, @PrimaryKey @ColumnInfo(name = "id") var id:String):Serializable
+                    var description:String, var createdDate:String, @PrimaryKey var id:String):Serializable

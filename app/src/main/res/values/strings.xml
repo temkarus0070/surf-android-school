@@ -12,4 +12,6 @@
     <string name="createMemCaption">Заголовок</string>
     <string name="createMemText">Текст</string>
     <string name="createMemBtnText">СОЗДАТЬ</string>
+    <string name="aboutApp">О приложении</string>
+    <string name="exit">Выйти</string>
 </resources>

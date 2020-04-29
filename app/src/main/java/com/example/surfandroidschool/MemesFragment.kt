@@ -8,6 +8,7 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.view.children
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.surfandroidschool.memes.MemeData
@@ -17,6 +18,7 @@ import com.example.surfandroidschool.mvp.views.MemesView
 import com.example.surfandroidschool.ui.activities.MemeViewFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
@@ -60,12 +62,17 @@ public class MemesFragment : MvpAppCompatFragment(), MemesView {
         val createView = activity?.findViewById<RelativeLayout>(R.id.memeCreateMenu)
 
         toolbar?.setBackgroundColor(resources.getColor(R.color.memeBackColor))
+        if(memeView != null)
+            toolbar?.removeView(memeView)
         if (view != null)
             toolbar?.removeView(view)
         if (createView != null)
             toolbar?.removeView(createView)
         if (toolbar?.menu?.size() != 0)
             toolbar?.menu?.clear()
+        var nav = activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)
+        var menuItem =nav?.menu?.findItem(R.id.showMemes) as MenuItem
+        menuItem.setChecked(true)
         toolbar?.title = "Популярные мемы"
         toolbar?.inflateMenu(R.menu.show_memes_menu)
     }

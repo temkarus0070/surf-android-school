@@ -16,4 +16,6 @@
     <string name="exit">Выйти</string>
     <string name="errorLoad1">Не удалось загрузить ленту</string>
     <string name="errorLoad2">Обновите экран или попробуйте позже.</string>
+    <string name="cancelLogout">ОТМЕНА</string>
+    <string name="logoutText">ВЫЙТИ</string>
 </resources>

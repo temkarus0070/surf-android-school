@@ -1,22 +1,25 @@
 package com.example.surfandroidschool.ui.activities
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surfandroidschool.MemesFragment
 import com.example.surfandroidschool.R
+import com.example.surfandroidschool.logout.LogoutApiProvider
 import com.example.surfandroidschool.memes.MemeData
 import com.example.surfandroidschool.memes.memesAdapter
 import com.example.surfandroidschool.mvp.presenters.ProfilePresenter
 import com.example.surfandroidschool.mvp.views.ProfileView
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
@@ -41,13 +44,48 @@ class ProfileFragment:MvpAppCompatFragment(), ProfileView {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    fun setToolbar(){
+    fun setToolbar() {
         var toolbar = activity?.findViewById<Toolbar>(R.id.topToolbar)
         toolbar?.setBackgroundColor(resources.getColor(R.color.memeLayoutBackColor))
         toolbar?.menu?.clear()
-        toolbar?.title=null
+        toolbar?.title = null
         toolbar?.inflateMenu(R.menu.menu_profile)
+        toolbar?.setOnMenuItemClickListener{
+            when(it.itemId){
+                R.id.logoutOption-> {
+                    onLogout()
+                }
+                else -> true
+            }
+        }
     }
+
+
+    fun onLogout():Boolean{
+        val dialogBuilder =AlertDialog.Builder(context!!)
+            .setTitle("Действительно хотите\nвыйти?")
+            .setMessage("")
+        dialogBuilder.setNegativeButton(R.string.cancelLogout){ _,_->
+        }
+        dialogBuilder.setPositiveButton(R.string.logoutText){ _,_->
+            val api = LogoutApiProvider.getLogoutApi()
+            api.logout().subscribeOn(Schedulers.io())
+                .subscribe {
+                    val pref = context?.getSharedPreferences("auth",Context.MODE_PRIVATE)
+                    pref?.edit()?.clear()?.apply()
+                }
+        }
+        val dialog = dialogBuilder.create()
+        dialog.window?.setBackgroundDrawable(resources.getDrawable(R.color.mainBackgroundColor))
+        dialog.show()
+
+
+        return true
+    }
+
+
+
+
 
     override fun onStart() {
         setToolbar()

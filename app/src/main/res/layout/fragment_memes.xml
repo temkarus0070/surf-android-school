@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/memeLayoutBackColor"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MemesFragment">
 
+<RelativeLayout
+
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ProgressBar
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/progressMemesLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:progressDrawable="@drawable/loading_progress"
+        />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/errorTop"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:text="@string/errorLoad1"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/errorBottom"
+        android:layout_below="@id/errorTop"
+        android:layout_width="wrap_content"
+        android:text="@string/errorLoad2"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:visibility="gone"
+
         android:id="@+id/refresherMemes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -22,4 +57,4 @@
 
     </androidx.recyclerview.widget.RecyclerView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</FrameLayout>
+</RelativeLayout>

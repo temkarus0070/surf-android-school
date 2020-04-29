@@ -138,16 +138,16 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
 
     fun checkInput(){
         var item=topToolbar?.getChildAt(1).findViewById<Button>(R.id.addMeme)
-        item = item as Button
-        if(captionLength !=0 && textLength!=0){
-            item.setEnabled(true)
-            item.setTextColor(resources.getColor(R.color.greenButton))
-        }
-        else
-        {
-            item.setEnabled(false)
-            item.setTextColor(resources.getColor(R.color.disabledSaveColor))
+        if(item!=null) {
+            item = item as Button
+            if (captionLength != 0 && textLength != 0) {
+                item.setEnabled(true)
+                item.setTextColor(resources.getColor(R.color.greenButton))
+            } else {
+                item.setEnabled(false)
+                item.setTextColor(resources.getColor(R.color.disabledSaveColor))
 
+            }
         }
     }
 

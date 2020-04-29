@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.ProgressBar
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -24,12 +26,18 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
     lateinit var refresher:SwipeRefreshLayout
     lateinit var adapter:memesAdapter
     lateinit var listMemes:RecyclerView
+    lateinit var errorTop:TextView
+    lateinit var errorBottom:TextView
+    lateinit var progressBar:ProgressBar
+    lateinit var thisView:View
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_memes,container,false)
+        thisView = inflater.inflate(R.layout.fragment_memes,container,false)
+        return thisView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,6 +46,10 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
 
     override fun showMemes(memesList:List<MemeData>) {
         adapter.setData(memesList)
+        refresher.visibility =  View.VISIBLE
+        progressBar.visibility = View.GONE
+        errorTop?.visibility = View.GONE
+        errorBottom?.visibility = View.GONE
     }
 
 
@@ -59,6 +71,10 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
     }
 
     override fun initialize(){
+        errorTop = thisView.findViewById<TextView>(R.id.errorTop)!!
+        errorBottom = thisView.findViewById<TextView>(R.id.errorBottom)!!
+        progressBar =  thisView.findViewById<ProgressBar>(R.id.progressMemesLoad)!!
+
         refresher = activity?.findViewById<SwipeRefreshLayout>(R.id.refresherMemes)!!
         refresher?.setOnRefreshListener {
             run {
@@ -81,7 +97,6 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
         super.onAttach(context)
         if(context is Activity){
             var mActivity =context as Activity
-
             adapter = memesAdapter(mActivity,::itemClicker)
         }
 
@@ -99,7 +114,9 @@ public class MemesFragment:MvpAppCompatFragment(),MemesView{
     }
 
     override fun showError() {
-        println("ошибочка вышла")
+        progressBar.visibility = View.GONE
+       errorTop?.visibility = View.VISIBLE
+        errorBottom?.visibility = View.VISIBLE
     }
 
 

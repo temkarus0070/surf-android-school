@@ -3,6 +3,7 @@ package com.example.surfandroidschool.ui.activities
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
@@ -18,6 +19,7 @@ import com.example.surfandroidschool.memes.MemeData
 import com.example.surfandroidschool.memes.memesAdapter
 import com.example.surfandroidschool.mvp.presenters.ProfilePresenter
 import com.example.surfandroidschool.mvp.views.ProfileView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
@@ -70,10 +72,15 @@ class ProfileFragment:MvpAppCompatFragment(), ProfileView {
         dialogBuilder.setPositiveButton(R.string.logoutText){ _,_->
             val api = LogoutApiProvider.getLogoutApi()
             api.logout().subscribeOn(Schedulers.io())
-                .subscribe {
+                .subscribe({
                     val pref = context?.getSharedPreferences("auth",Context.MODE_PRIVATE)
                     pref?.edit()?.clear()?.apply()
-                }
+                    startActivity(Intent(activity?.applicationContext,AuthActivity::class.java))
+                    activity?.finish()
+                },
+                    {
+                        it.printStackTrace()
+                    })
         }
         val dialog = dialogBuilder.create()
         dialog.window?.setBackgroundDrawable(resources.getDrawable(R.color.mainBackgroundColor))

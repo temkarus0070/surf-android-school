@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:title="@string/aboutApp">
+<menu    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@color/memeBackColor"
+        android:title="TODO">
 
-</item>
-    <item android:id="@+id/logoutOption"
-        android:title="@string/exit">
 
+        <item android:title="@string/aboutApp">
+
+        </item>
+        <item
+            android:id="@+id/logoutOption"
+            android:title="@string/exit">
+
+        </item>
     </item>
 </menu>

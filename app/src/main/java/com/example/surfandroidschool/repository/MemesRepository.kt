@@ -23,5 +23,11 @@ class MemesRepository(
         return memesDao.insert(meme)
     }
 
+    @WorkerThread
+    fun delete(){
+        memesDao.delete()
+    }
+
+
 
 }

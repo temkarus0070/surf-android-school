@@ -25,11 +25,15 @@ class MemesViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val memeDao = MemesRoomDb.getDb(application).memeDao()
         repository = MemesRepository(memeDao)
-        allMemes = repository.getAll()
+        allMemes = repository.allMemes
     }
 
     fun insert(meme: MemeData) = scope.launch(Dispatchers.IO) {
         repository.insert(meme)
+    }
+
+    fun delete() = scope.launch(Dispatchers.IO) {
+        repository.delete()
     }
 
     override fun onCleared() {

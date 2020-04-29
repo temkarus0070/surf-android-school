@@ -26,7 +26,7 @@ abstract class MemesRoomDb: RoomDatabase() {
                         MemesRoomDb
                         ::class.java,
                         "memes_db"
-                    ).allowMainThreadQueries()
+                    )
                         .build()
 
                 }

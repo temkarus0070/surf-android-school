@@ -21,6 +21,15 @@
 
         />
     <TextView
+        android:id="@+id/profileDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:spanCount="2"
+        android:id="@+id/profileMemesList"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        />
 </RelativeLayout>

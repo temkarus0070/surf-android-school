@@ -19,20 +19,20 @@ import io.reactivex.schedulers.Schedulers
 
 import moxy.InjectViewState
 import moxy.MvpPresenter
+
 @InjectViewState
-class CreatePresenter:MvpPresenter<CreateMemeView>() {
-    private var lastId:Long = 0
+class CreatePresenter : MvpPresenter<CreateMemeView>() {
+    private var lastId: Long = 0
 
     lateinit var memeViewModel: MemesViewModel
 
-    fun createMem(meme:MemeData,context:Context?, fragment:Fragment){
+    fun createMem(meme: MemeData, context: Context?, fragment: Fragment) {
         memeViewModel = ViewModelProviders.of(fragment)
             .get(MemesViewModel::class.java)
         var list = memeViewModel.allMemes
-        list.observe(fragment, Observer {
-                memes->
+        list.observe(fragment, Observer { memes ->
             memes?.let {
-                if(it.isNotEmpty()) {
+                if (it.isNotEmpty()) {
                     lastId = it.last().id.toLong()
                     lastId = lastId + 1
                 }

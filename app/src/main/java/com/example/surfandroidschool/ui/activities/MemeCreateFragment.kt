@@ -38,23 +38,24 @@ import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import java.util.*
 
-class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
+class MemeCreateFragment : MvpAppCompatFragment(), CreateMemeView {
     @InjectPresenter
-    lateinit var presenter:CreatePresenter
-    private val url ="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfPiMMl5kXYin0ZwAQ8BSzXEFCdLaWTWDiu-KQSCNeYbWKS1rM&usqp=CAU"
-    public lateinit var fragmentView:View
-    lateinit var editCaption:EditText
-    lateinit var editText:EditText
-    lateinit var topToolbar:Toolbar
-    var captionLength:Int=0
-    var textLength:Int=0
+    lateinit var presenter: CreatePresenter
+    private val url =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfPiMMl5kXYin0ZwAQ8BSzXEFCdLaWTWDiu-KQSCNeYbWKS1rM&usqp=CAU"
+    public lateinit var fragmentView: View
+    lateinit var editCaption: EditText
+    lateinit var editText: EditText
+    lateinit var topToolbar: Toolbar
+    var captionLength: Int = 0
+    var textLength: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentView= inflater.inflate(R.layout.fragment_create,container,false)
+        fragmentView = inflater.inflate(R.layout.fragment_create, container, false)
         setMenu()
         createListeners()
         checkInput()
@@ -70,15 +71,13 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
         super.onCreate(savedInstanceState)
 
 
-
-
     }
 
 
-    fun createListeners(){
-        editCaption= fragmentView.findViewById(R.id.captionMeme)!!
-        editText= fragmentView.findViewById(R.id.textMeme)!!
-        editCaption.addTextChangedListener(object:TextWatcher{
+    fun createListeners() {
+        editCaption = fragmentView.findViewById(R.id.captionMeme)!!
+        editText = fragmentView.findViewById(R.id.textMeme)!!
+        editCaption.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -89,7 +88,7 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s != null) {
-                    captionLength=s.length
+                    captionLength = s.length
 
                 }
                 checkInput()
@@ -99,7 +98,7 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
 
         )
 
-        editText.addTextChangedListener(object:TextWatcher{
+        editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -109,9 +108,9 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-               if(s!=null) {
-                   textLength = s.length
-               }
+                if (s != null) {
+                    textLength = s.length
+                }
                 checkInput()
             }
 
@@ -119,29 +118,29 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
 
 
         activity?.findViewById<Button>(R.id.exitCreateBtn)?.setOnClickListener {
-            kotlin.run{
-                activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)?.
-                    selectedItemId= R.id.showMemes
-                var transaction =fragmentManager?.beginTransaction()
+            kotlin.run {
+                activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)?.selectedItemId =
+                    R.id.showMemes
+                var transaction = fragmentManager?.beginTransaction()
                 transaction?.replace(R.id.appFragment, MemesFragment())
                 transaction?.commit()
             }
         }
         activity?.findViewById<Button>(R.id.addMeme)?.setOnClickListener {
-            kotlin.run{
+            kotlin.run {
                 val caption = editCaption.text.toString()
                 val text = editText.text.toString()
-                var meme = MemeData(caption,url,false,text, Date().time.toString(),"1")
+                var meme = MemeData(caption, url, false, text, Date().time.toString(), "1")
 
-                presenter.createMem(meme,context,this)
+                presenter.createMem(meme, context, this)
             }
         }
 
     }
 
-    fun checkInput(){
-        var item=topToolbar?.getChildAt(1).findViewById<Button>(R.id.addMeme)
-        if(item!=null) {
+    fun checkInput() {
+        var item = topToolbar?.getChildAt(1).findViewById<Button>(R.id.addMeme)
+        if (item != null) {
             item = item as Button
             if (captionLength != 0 && textLength != 0) {
                 item.setEnabled(true)
@@ -155,20 +154,19 @@ class MemeCreateFragment:MvpAppCompatFragment(),CreateMemeView {
     }
 
 
-
-    private fun setMenu(){
+    private fun setMenu() {
         val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)
         bottomNav?.visibility = View.GONE
         topToolbar = activity?.findViewById<Toolbar>(R.id.topToolbar)!!
         topToolbar.menu.clear()
-        layoutInflater.inflate(R.layout.menu_layout_meme_create,topToolbar)
+        layoutInflater.inflate(R.layout.menu_layout_meme_create, topToolbar)
         topToolbar?.title = null
         topToolbar?.setBackgroundColor(resources.getColor(R.color.memeBackColor))
 
 
     }
 
-   override fun goOut(){
+    override fun goOut() {
 
     }
 

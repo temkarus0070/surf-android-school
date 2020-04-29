@@ -6,5 +6,5 @@ import java.util.*
 
 interface LogoutApi {
     @POST("auth/logout")
-    fun logout():Observable<LogoutInfo>
+    fun logout(): Observable<LogoutInfo>
 }

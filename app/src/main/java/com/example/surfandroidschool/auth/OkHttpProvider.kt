@@ -32,7 +32,7 @@ object RetrofitProvider {
 }
 
 object AuthApiProvider {
-    fun getAuthApi():AuthApi {
-       return RetrofitProvider.retrofit().create(AuthApi::class.java)
+    fun getAuthApi(): AuthApi {
+        return RetrofitProvider.retrofit().create(AuthApi::class.java)
     }
 }

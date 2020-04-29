@@ -6,5 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "memes_table")
-data class MemeData(var title:String, var photoUrl:String, var isFavorite:Boolean,
-                    var description:String, var createdDate:String, @PrimaryKey var id:String):Serializable
+data class MemeData(
+    var title: String, var photoUrl: String, var isFavorite: Boolean,
+    var description: String, var createdDate: String, @PrimaryKey var id: String
+) : Serializable

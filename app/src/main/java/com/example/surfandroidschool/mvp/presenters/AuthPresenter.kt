@@ -36,8 +36,7 @@ class AuthPresenter : MvpPresenter<AuthView>() {
                     editor?.putString("userDescription", it.userInfo.userDescription)
                     editor?.apply()
                     viewState.nextScreen()
-                }
-                else
+                } else
                     error()
                 viewState.endAuth(it)
 

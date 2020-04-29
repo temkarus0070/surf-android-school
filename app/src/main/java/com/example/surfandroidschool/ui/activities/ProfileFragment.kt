@@ -25,19 +25,19 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
-class ProfileFragment:MvpAppCompatFragment(), ProfileView {
+class ProfileFragment : MvpAppCompatFragment(), ProfileView {
     @InjectPresenter
     lateinit var presenter: ProfilePresenter
-    lateinit var adapter:memesAdapter
-    lateinit var memesList:RecyclerView
-    lateinit var thisView:View
+    lateinit var adapter: memesAdapter
+    lateinit var memesList: RecyclerView
+    lateinit var thisView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        thisView = inflater.inflate(R.layout.fragment_profile,container,false)
+        thisView = inflater.inflate(R.layout.fragment_profile, container, false)
         return thisView
     }
 
@@ -52,9 +52,9 @@ class ProfileFragment:MvpAppCompatFragment(), ProfileView {
         toolbar?.menu?.clear()
         toolbar?.title = null
         toolbar?.inflateMenu(R.menu.menu_profile)
-        toolbar?.setOnMenuItemClickListener{
-            when(it.itemId){
-                R.id.logoutOption-> {
+        toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.logoutOption -> {
                     onLogout()
                 }
                 else -> true
@@ -63,19 +63,24 @@ class ProfileFragment:MvpAppCompatFragment(), ProfileView {
     }
 
 
-    fun onLogout():Boolean{
-        val dialogBuilder =AlertDialog.Builder(context!!)
+    fun onLogout(): Boolean {
+        val dialogBuilder = AlertDialog.Builder(context!!)
             .setTitle("Действительно хотите\nвыйти?")
             .setMessage("")
-        dialogBuilder.setNegativeButton(R.string.cancelLogout){ _,_->
+        dialogBuilder.setNegativeButton(R.string.cancelLogout) { _, _ ->
         }
-        dialogBuilder.setPositiveButton(R.string.logoutText){ _,_->
+        dialogBuilder.setPositiveButton(R.string.logoutText) { _, _ ->
             val api = LogoutApiProvider.getLogoutApi()
             api.logout().subscribeOn(Schedulers.io())
                 .subscribe({
-                    val pref = context?.getSharedPreferences("auth",Context.MODE_PRIVATE)
+                    val pref = context?.getSharedPreferences("auth", Context.MODE_PRIVATE)
                     pref?.edit()?.clear()?.apply()
-                    startActivity(Intent(activity?.applicationContext,AuthActivity::class.java))
+                    startActivity(
+                        Intent(
+                            activity?.applicationContext,
+                            AuthActivity::class.java
+                        )
+                    )
                     activity?.finish()
                 },
                     {
@@ -91,44 +96,39 @@ class ProfileFragment:MvpAppCompatFragment(), ProfileView {
     }
 
 
-
-
-
     override fun onStart() {
         setToolbar()
         presenter.memeLoading(this)
-        val prefs = thisView.context.getSharedPreferences("auth",Context.MODE_PRIVATE)
-        val name = prefs.getString("username","")
-        val descr = prefs.getString("userDescription","")
+        val prefs = thisView.context.getSharedPreferences("auth", Context.MODE_PRIVATE)
+        val name = prefs.getString("username", "")
+        val descr = prefs.getString("userDescription", "")
         thisView.findViewById<TextView>(R.id.profileName).text = name
         thisView.findViewById<TextView>(R.id.profileDescription).text = descr
         super.onStart()
 
     }
 
-    fun loadAdapter(){
+    fun loadAdapter() {
         memesList = thisView.findViewById(R.id.profileMemesList)!!
         memesList.adapter = adapter
     }
 
     override fun onAttach(context: Context) {
-        if(context is Activity)
-        {
-            adapter = memesAdapter(context as Activity,::itemClicker)
+        if (context is Activity) {
+            adapter = memesAdapter(context as Activity, ::itemClicker)
         }
 
         super.onAttach(context)
     }
 
 
-
-    fun itemClicker(data:MemeData, position:Int):Unit{
+    fun itemClicker(data: MemeData, position: Int): Unit {
         val ft = fragmentManager?.beginTransaction()
-        val fragment=MemeViewFragment()
-        val bundle=Bundle()
-        bundle.putSerializable("meme",data)
-        fragment.arguments=bundle
-        ft?.replace(R.id.appFragment,fragment,"memeView")
+        val fragment = MemeViewFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("meme", data)
+        fragment.arguments = bundle
+        ft?.replace(R.id.appFragment, fragment, "memeView")
         ft?.commit()
 
     }

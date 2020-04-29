@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface MemeApi {
     @GET("memes")
-    fun getMemes():Observable<List<MemeData>>
+    fun getMemes(): Observable<List<MemeData>>
 
 }

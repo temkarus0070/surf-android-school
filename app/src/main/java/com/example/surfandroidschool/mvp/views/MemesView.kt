@@ -7,8 +7,8 @@ import moxy.viewstate.strategy.StateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface MemesView:MvpView {
-    fun showMemes(memesList:List<MemeData>)
+interface MemesView : MvpView {
+    fun showMemes(memesList: List<MemeData>)
     fun initialize()
     fun showError()
     fun hideRefreshBar()

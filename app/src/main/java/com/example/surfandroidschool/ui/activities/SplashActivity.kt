@@ -11,7 +11,7 @@ import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 
-public class SplashActivity:MvpAppCompatActivity(),SplashView {
+public class SplashActivity : MvpAppCompatActivity(), SplashView {
     @InjectPresenter
     internal lateinit var presenter: SplashPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,11 +23,9 @@ public class SplashActivity:MvpAppCompatActivity(),SplashView {
 
     override fun openNext() {
 
-        startActivity(Intent(this,AuthActivity::class.java))
+        startActivity(Intent(this, AuthActivity::class.java))
         finish()
     }
-
-
 
 
 }

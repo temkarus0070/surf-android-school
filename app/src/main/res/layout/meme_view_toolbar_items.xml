@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/memeViewMenu"
-  android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-<Button
-    android:layout_alignParentLeft="true"
-    android:layout_margin="21dp"
-    android:id="@+id/exitBtn"
-    android:layout_width="14dp"
-    android:layout_height="14dp"
-    android:background="@drawable/ic_exit"/>
-    <ImageView
-        android:layout_centerVertical="true"
+
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="72dp"
+        android:layout_margin="21dp"
+        android:background="@drawable/ic_exit" />
+
+    <ImageView
         android:id="@+id/authorImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="118dp"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="72dp" />
+
+    <TextView
         android:id="@+id/authorName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="18.09dp"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="118dp" />
+
+    <Button
         android:id="@+id/shareBtn"
         android:layout_width="18dp"
         android:layout_height="19.91dp"
-        android:background="@drawable/ic_share"/>
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="18.09dp"
+        android:background="@drawable/ic_share" />
 
 </RelativeLayout>

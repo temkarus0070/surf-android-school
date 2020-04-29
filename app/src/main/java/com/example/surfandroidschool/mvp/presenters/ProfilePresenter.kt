@@ -10,15 +10,15 @@ import moxy.InjectViewState
 import moxy.MvpPresenter
 
 @InjectViewState
-class ProfilePresenter:MvpPresenter<ProfileView>() {
+class ProfilePresenter : MvpPresenter<ProfileView>() {
 
-    lateinit var memesViewModel:MemesViewModel
+    lateinit var memesViewModel: MemesViewModel
 
     override fun attachView(view: ProfileView?) {
         super.attachView(view)
     }
 
-    fun memeLoading(fragment:Fragment){
+    fun memeLoading(fragment: Fragment) {
 
         memesViewModel = ViewModelProviders.of(fragment)
             .get(MemesViewModel::class.java)
@@ -27,8 +27,6 @@ class ProfilePresenter:MvpPresenter<ProfileView>() {
         })
 
     }
-
-
 
 
 }

@@ -1,59 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<de.hdodenhof.circleimageview.CircleImageView
-    android:layout_centerHorizontal="true"
-    android:src="@mipmap/ic_user_avatar"
-    android:layout_width="64dp"
-    android:id="@+id/profileImage"
-    app:civ_border_width="2dp"
-    app:civ_border_color="@color/greenButton"
-    android:layout_height="64dp"/>
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_user_avatar"
+        app:civ_border_color="@color/greenButton"
+        app:civ_border_width="2dp" />
+
     <TextView
-        android:textSize="18sp"
-        android:layout_below="@id/profileImage"
-        android:textColor="@color/loginsBackground"
-        android:layout_marginTop="16dp"
         android:id="@+id/profileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/profileImage"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/loginsBackground"
+        android:textSize="18sp"
 
         />
+
     <ProgressBar
+        android:id="@+id/loadingProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:id="@+id/loadingProgress"
-        android:indeterminateOnly="true"
         android:indeterminateDrawable="@drawable/loading_progress"
-        />
+        android:indeterminateOnly="true" />
+
     <TextView
-        android:textSize="14sp"
-        android:layout_below="@id/profileName"
-        android:layout_marginTop="26dp"
         android:id="@+id/profileDescription"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileName"
+        android:layout_marginTop="26dp"
+        android:textSize="14sp" />
+
     <ImageView
         android:id="@+id/imageLine"
-        android:layout_marginTop="24dp"
-        android:layout_below="@id/profileDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_line"/>
+        android:layout_below="@id/profileDescription"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_line" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginBottom="28dp"
-        android:layout_below="@id/imageLine"
-        android:layout_marginTop="24dp"
+        android:id="@+id/profileMemesList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:spanCount="2"
-        android:id="@+id/profileMemesList"
+        android:layout_below="@id/imageLine"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="28dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        />
+        app:spanCount="2" />
 </RelativeLayout>

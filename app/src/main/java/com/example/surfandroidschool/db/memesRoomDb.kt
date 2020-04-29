@@ -10,7 +10,7 @@ import com.example.surfandroidschool.memes.MemeData
 import kotlinx.coroutines.internal.synchronized
 
 @Database(entities = [MemeData::class], version = 1)
-abstract class MemesRoomDb: RoomDatabase() {
+abstract class MemesRoomDb : RoomDatabase() {
 
     abstract fun memeDao(): MemeDao
 
@@ -34,7 +34,7 @@ abstract class MemesRoomDb: RoomDatabase() {
             return DB!!
         }
 
-        fun destroyDb(){
+        fun destroyDb() {
             DB = null
         }
     }

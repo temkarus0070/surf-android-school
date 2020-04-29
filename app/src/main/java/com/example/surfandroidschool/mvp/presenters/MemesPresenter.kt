@@ -12,7 +12,7 @@ import moxy.InjectViewState
 import moxy.MvpPresenter
 
 @InjectViewState
-class MemesPresenter:MvpPresenter<MemesView>() {
+class MemesPresenter : MvpPresenter<MemesView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -20,15 +20,15 @@ class MemesPresenter:MvpPresenter<MemesView>() {
 
     }
 
-    public fun loadMemes(){
-        val api=MemeApiProvider.getMemeApi()
+    public fun loadMemes() {
+        val api = MemeApiProvider.getMemeApi()
         val memes = api.getMemes()
         memes.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(             {
+            .subscribe({
                 viewState.showMemes(it)
                 viewState?.hideRefreshBar()
-            } ,
+            },
                 {
                     it.printStackTrace()
                     viewState.showError()

@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="8dp"
-    android:orientation="vertical"
-    android:background="@color/memeBackColor"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_margin="8dp"
+    android:background="@color/memeBackColor"
+    android:orientation="vertical">
+
     <ImageView
         android:id="@+id/memeImage"
         android:layout_width="180dp"
         android:layout_height="180dp" />
+
     <TextView
-        android:maxLines="1"
-        android:layout_marginTop="9dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginBottom="6dp"
         android:id="@+id/memeText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="6dp"
+        android:maxLines="1" />
+
     <LinearLayout
         android:id="@+id/buttonsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        >
+        android:layout_marginBottom="14dp">
+
         <Button
+            android:id="@+id/likeButton"
+            android:layout_width="14dp"
+            android:layout_height="12dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:width="14dp"
             android:height="12dp"
-            android:background="@drawable/ic_unlike"
-            android:layout_width="14dp"
-            android:layout_height="12dp"
-            android:id="@+id/likeButton"
-           >
+            android:background="@drawable/ic_unlike">
 
         </Button>
+
         <Button
-            android:background="@drawable/ic_share"
+            android:id="@+id/shareButton"
             android:layout_width="12dp"
             android:layout_height="14dp"
-            android:id="@+id/shareButton">
-        </Button>
+            android:background="@drawable/ic_share"></Button>
     </LinearLayout>
 </LinearLayout>

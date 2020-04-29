@@ -22,15 +22,14 @@ import moxy.MvpAppCompatFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MemeViewFragment:MvpAppCompatFragment(),MemeView {
+class MemeViewFragment : MvpAppCompatFragment(), MemeView {
     lateinit var memeData: MemeData
-    lateinit var fragmentView:View
-    lateinit var memeCaption:TextView
-    lateinit var memeImage:ImageView
-    lateinit var memeText:TextView
-    lateinit var memeDate:TextView
-    lateinit var memeLikeBtn:Button
-
+    lateinit var fragmentView: View
+    lateinit var memeCaption: TextView
+    lateinit var memeImage: ImageView
+    lateinit var memeText: TextView
+    lateinit var memeDate: TextView
+    lateinit var memeLikeBtn: Button
 
 
     override fun onCreateView(
@@ -39,7 +38,7 @@ class MemeViewFragment:MvpAppCompatFragment(),MemeView {
         savedInstanceState: Bundle?
     ): View? {
 
-       fragmentView = inflater.inflate(R.layout.fragment_meme_view,container,false)
+        fragmentView = inflater.inflate(R.layout.fragment_meme_view, container, false)
 
         return fragmentView
     }
@@ -53,24 +52,24 @@ class MemeViewFragment:MvpAppCompatFragment(),MemeView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val bundle=arguments
-        if(bundle!=null){
+        val bundle = arguments
+        if (bundle != null) {
             memeData = bundle.getSerializable("meme") as MemeData
         }
 
         super.onCreate(savedInstanceState)
     }
 
-    fun initialize(){
+    fun initialize() {
 
         var topToolbar: Toolbar? = activity?.findViewById(R.id.topToolbar)
         topToolbar?.menu?.clear()
-        layoutInflater.inflate(R.layout.meme_view_toolbar_items,topToolbar)
+        layoutInflater.inflate(R.layout.meme_view_toolbar_items, topToolbar)
         activity?.findViewById<Button>(R.id.exitBtn)?.setOnClickListener {
-           kotlin.run {
-                var transaction =fragmentManager?.beginTransaction()
-               transaction?.replace(R.id.appFragment,MemesFragment())
-               transaction?.commit()
+            kotlin.run {
+                var transaction = fragmentManager?.beginTransaction()
+                transaction?.replace(R.id.appFragment, MemesFragment())
+                transaction?.commit()
             }
         }
         memeCaption = fragmentView?.findViewById(R.id.memeCaption)!!
@@ -78,18 +77,18 @@ class MemeViewFragment:MvpAppCompatFragment(),MemeView {
         memeDate = fragmentView?.findViewById(R.id.memeDate)
         memeImage = fragmentView?.findViewById(R.id.memeImage)
         memeLikeBtn = fragmentView?.findViewById(R.id.memeLikeBtn)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)?.visibility=View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavView)?.visibility = View.GONE
     }
 
-    fun writeMeme(){
+    fun writeMeme() {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-        val date =  Date(memeData.createdDate.toLong()* 1000L)
+        val date = Date(memeData.createdDate.toLong() * 1000L)
         var todayDate = Date()
         val dif = todayDate.time - date.time
-        val days = dif/86400000
+        val days = dif / 86400000
         memeCaption?.text = memeData.title
-        memeText.text =memeData.description
+        memeText.text = memeData.description
         Glide.with(
             fragmentView
         ).load(memeData.photoUrl)
@@ -99,11 +98,12 @@ class MemeViewFragment:MvpAppCompatFragment(),MemeView {
         setOnclick()
     }
 
-    fun setOnclick(){
+    fun setOnclick() {
         memeLikeBtn.setOnClickListener(
             {
-                var memeViewModel: MemesViewModel = ViewModelProviders.of(activity as AppCompatActivity)
-                    .get(MemesViewModel::class.java)
+                var memeViewModel: MemesViewModel =
+                    ViewModelProviders.of(activity as AppCompatActivity)
+                        .get(MemesViewModel::class.java)
                 memeData.isFavorite = true
                 memeViewModel.insert(memeData)
             }

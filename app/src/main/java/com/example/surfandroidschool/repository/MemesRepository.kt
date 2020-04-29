@@ -11,23 +11,24 @@ import io.reactivex.Flowable
 
 
 class MemesRepository(
-    private val memesDao:MemeDao)
-{
-    var allMemes:LiveData<List<MemeData>> = memesDao.getAllMemes()
+    private val memesDao: MemeDao
+) {
+    var allMemes: LiveData<List<MemeData>> = memesDao.getAllMemes()
+
     @WorkerThread
     fun getAll(): LiveData<List<MemeData>> {
         return memesDao.getAllMemes()
     }
+
     @WorkerThread
-    fun insert(meme:MemeData){
+    fun insert(meme: MemeData) {
         return memesDao.insert(meme)
     }
 
     @WorkerThread
-    fun delete(){
+    fun delete() {
         memesDao.delete()
     }
-
 
 
 }

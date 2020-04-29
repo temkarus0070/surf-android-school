@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.surfandroidschool.MemesFragment
 import com.example.surfandroidschool.R
 import com.example.surfandroidschool.memes.MemeData
 import com.example.surfandroidschool.mvp.views.MemeView
+import com.example.surfandroidschool.vm.MemesViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import moxy.MvpAppCompatFragment
 import java.text.SimpleDateFormat
@@ -93,5 +96,17 @@ class MemeViewFragment:MvpAppCompatFragment(),MemeView {
             .into(memeImage)
 
         memeDate.text = "$days дня/дней назад"
+        setOnclick()
+    }
+
+    fun setOnclick(){
+        memeLikeBtn.setOnClickListener(
+            {
+                var memeViewModel: MemesViewModel = ViewModelProviders.of(activity as AppCompatActivity)
+                    .get(MemesViewModel::class.java)
+                memeData.isFavorite = true
+                memeViewModel.insert(memeData)
+            }
+        )
     }
 }

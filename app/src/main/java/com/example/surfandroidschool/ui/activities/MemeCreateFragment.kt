@@ -167,7 +167,10 @@ class MemeCreateFragment : MvpAppCompatFragment(), CreateMemeView {
     }
 
     override fun goOut() {
-
+        val ft = fragmentManager?.beginTransaction()
+        val fragment = MemesFragment()
+        ft?.replace(R.id.appFragment, fragment, "memesView")
+        ft?.commit()
     }
 
 

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
@@ -91,6 +92,9 @@ class ProfileFragment:MvpAppCompatFragment(), ProfileView {
     override fun memeLoad(memes: List<MemeData>) {
 
         adapter.setData(memes)
+        val progress = thisView.findViewById<ProgressBar>(R.id.loadingProgress)
+        progress.visibility = View.GONE
+        progress.isIndeterminate = false
     }
 
 
